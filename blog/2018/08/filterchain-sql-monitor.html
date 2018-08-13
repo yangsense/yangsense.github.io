@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Smack, 消息推送, 服务器， 实时聊天" />
+  <meta name="keywords" content="MySQL,FilterChain," />
 
 
 
@@ -108,18 +108,18 @@
 
 
 
-<meta name="description" content="这篇文章翻译自Smack的官方文档，http://www.igniterealtime.org/builds/smack/docs/latest/documentation/，转载请注明出处。 Smack是一个为使用XMPP服务器聊天和发送即时消息交流而提供的库。">
-<meta name="keywords" content="Smack, 消息推送, 服务器， 实时聊天">
+<meta name="description" content="做过Web开发应该对FilterChain这个词不陌生，在Servlet应用中我们可以使用Filter来拦截拦截客户端请求，在响应返回给客户端之前截获请求，我们可以使用EncodingFilter来设置请求的编码，使用SecurityFilter来做权限控制，所有的Filter组成了一个完整的FilterChain. NIO框架Netty也是用了FilterChain的设计模式，可以配置Filte">
+<meta name="keywords" content="MySQL,FilterChain">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Smack开发手册">
-<meta property="og:url" content="http://www.ezlippi.com/blog/2014/10/how to use smack.html">
+<meta property="og:title" content="使用FilterChain模式监控SQL调用">
+<meta property="og:url" content="http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html">
 <meta property="og:site_name" content="EZLippi-浮生志">
-<meta property="og:description" content="这篇文章翻译自Smack的官方文档，http://www.igniterealtime.org/builds/smack/docs/latest/documentation/，转载请注明出处。 Smack是一个为使用XMPP服务器聊天和发送即时消息交流而提供的库。">
+<meta property="og:description" content="做过Web开发应该对FilterChain这个词不陌生，在Servlet应用中我们可以使用Filter来拦截拦截客户端请求，在响应返回给客户端之前截获请求，我们可以使用EncodingFilter来设置请求的编码，使用SecurityFilter来做权限控制，所有的Filter组成了一个完整的FilterChain. NIO框架Netty也是用了FilterChain的设计模式，可以配置Filte">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-15T09:22:49.000Z">
+<meta property="og:updated_time" content="2018-08-13T13:31:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Smack开发手册">
-<meta name="twitter:description" content="这篇文章翻译自Smack的官方文档，http://www.igniterealtime.org/builds/smack/docs/latest/documentation/，转载请注明出处。 Smack是一个为使用XMPP服务器聊天和发送即时消息交流而提供的库。">
+<meta name="twitter:title" content="使用FilterChain模式监控SQL调用">
+<meta name="twitter:description" content="做过Web开发应该对FilterChain这个词不陌生，在Servlet应用中我们可以使用Filter来拦截拦截客户端请求，在响应返回给客户端之前截获请求，我们可以使用EncodingFilter来设置请求的编码，使用SecurityFilter来做权限控制，所有的Filter组成了一个完整的FilterChain. NIO框架Netty也是用了FilterChain的设计模式，可以配置Filte">
 
 
 
@@ -147,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ezlippi.com/blog/2014/10/how to use smack.html"/>
+  <link rel="canonical" href="http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html"/>
 
 
 
@@ -178,7 +178,7 @@
   </script>
 
 
-  <title> Smack开发手册 | EZLippi-浮生志 </title>
+  <title> 使用FilterChain模式监控SQL调用 | EZLippi-浮生志 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -427,7 +427,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.ezlippi.com/blog/2014/10/how to use smack.html">
+  <link itemprop="mainEntityOfPage" href="http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="EZLippi">
@@ -451,7 +451,7 @@ $(function() {
             
             
               
-                Smack开发手册
+                使用FilterChain模式监控SQL调用
               
             
           </h2>
@@ -466,8 +466,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T00:00:00+08:00">
-                2014-10-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T18:38:32+08:00">
+                2018-08-12
               </time>
             
 
@@ -489,8 +489,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -509,7 +509,7 @@ $(function() {
 			 
           
           
-             <span id="/blog/2014/10/how to use smack.html" class="leancloud_visitors" data-flag-title="Smack开发手册">
+             <span id="/blog/2018/08/filterchain-sql-monitor.html" class="leancloud_visitors" data-flag-title="使用FilterChain模式监控SQL调用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -534,7 +534,7 @@ $(function() {
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  5,599
+                  1,013
                 </span>
               
 
@@ -550,7 +550,7 @@ $(function() {
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  22
+                  5
                 </span>
               
             </div>
@@ -572,286 +572,17 @@ $(function() {
       
 
       
-        <p>这篇文章翻译自Smack的官方文档，<a href="http://www.igniterealtime.org/builds/smack/docs/latest/documentation/" target="_blank" rel="noopener">http://www.igniterealtime.org/builds/smack/docs/latest/documentation/</a>，转载请注明出处。</p>
-<p>Smack是一个为使用XMPP服务器聊天和发送即时消息交流而提供的库。<br><a id="more"></a> </p>
-<h2 id="Smack的主要优势："><a href="#Smack的主要优势：" class="headerlink" title="Smack的主要优势："></a>Smack的主要优势：</h2><ol>
-<li>使用简单且拥有强大的API。向用户发送一条文本消息只需用一下三行代码即可完成</li>
-</ol>
-<pre><code>XMPPConnection connection = new XMPPConnection(&quot;jabber.org&quot;);
-connection.login(&quot;mtucker&quot;, &quot;password&quot;);
-connection.createChat(&quot;jsmith@jivesoftware.com&quot;).sendMessage(&quot;Howdy!;
-</code></pre><ol start="2">
-<li>不像其它库那样，强制你在信息报级（packet level）编码。Smack提供智能的、更高级别的结构，例如：Chat和GroupChat类，这写能让你的程序效率更高。</li>
-</ol>
-<ul>
-<li>你不需要熟悉XMPP  XML格式，甚至不熟XML。</li>
-</ul>
-<ol>
-<li><p>提供简单的机器到机器的通讯。Smack允许你对每一条消息设置任何数字的属性，包括Java对象的属性。</p>
-</li>
-<li><p>Apache许可的开放源码，你可将其用于商业的和非商业的应用。</p>
-</li>
-</ol>
-<h2 id="关于XMPP"><a href="#关于XMPP" class="headerlink" title="关于XMPP"></a>关于XMPP</h2><p>XMPP (eXtensible Messaging and Presence Protocol)是一个开放的，</p>
-<p>如何使用本文档<br>本文档假定你已经熟悉XMPP即时消息的主要特征。我们推荐你在阅读该文档时打开Javadoc API作为参考。</p>
-<p><strong>开始Smack</strong></p>
-<p>本文档将向你介绍Smack API，并大概介绍几个重要的类和概念。<br>必备的条件<br>你只需要有JDK 1.2或之后的版本1和已经内嵌在smack..jar文件中的XML分析器，不需要第三部分库。<br>1JDK 1.2 and 1.3的用户若想使用SSL连接必须在他的类路径下有JSSE库。</p>
-<p><strong>建立一个连接</strong></p>
-<p>XMPPConnection类是为XMPP服务器建立连接的类。若要创建SSL连接，需使用SSLXMPPConnection类，以下是创建连接的例子。</p>
-<pre><code>// Create a connection to the jabber.org server.
-XMPPConnection conn1 = new XMPPConnection(&quot;jabber.org&quot;);
-
-// Create a connection to the jabber.org server on a specific port.
-XMPPConnection conn2 = new XMPPConnection(&quot;jabber.org&quot;, 5222);
-
-// Create an SSL connection to jabber.org.
-XMPPConnection connection = new SSLXMPPConnection(&quot;jabber.org&quot;);
-</code></pre><p>如果创建了一个连接，你应该使用<code>XMPPConnection.login(String username, String password)</code>方法（参数为用户名和密码）进行登陆。一旦登陆成功，你就可以通过创建一个新的Chat 或GroupChat对象与其它用户聊天。</p>
-<hr>
-<h2 id="使用花名册（Working-with-the-Roster）"><a href="#使用花名册（Working-with-the-Roster）" class="headerlink" title="使用花名册（Working with the Roster）"></a>使用花名册（Working with the Roster）</h2><ul>
-<li><p>花名册让你很清楚的知道其它可用的用户。用户可以被分成像“朋友”、“合作者”这样的组，从而知道其它的用户在线还是离线。</p>
-</li>
-<li><p>可以使用XMPPConnection.getRoster()方法检索花名册。你可以用花名册（roster）类查找花名册的所有条目，它们所属的组以及每个条目当前呈现的状态。</p>
-</li>
-</ul>
-<p><strong>读、写信息包（Reading and Writing Packets）</strong></p>
-<ul>
-<li><p>从客户端发送到XMPP的每一条消息称为一个信息包，并作为XML发送。The org.jivesoftware.smack.packet包含封装了三个XMPP允许的、不同的基本包类型(message, presence, and IQ)的类。像Chat和GroupChat这样的类提供更高级别的结构，它可以自动的创建和发送信息包，当然你也可以直接创建和发送信息包。以下代码是一个将你的当前状态改为“隐身“，从而不被别人看到的例子：</p>
-<p> // Create a new presence. Pass in false to indicate we’re unavailable.<br> Presence presence = new Presence(Presence.Type.UNAVAILABLE);<br> presence.setStatus(“Gone fishing”);<br> // Send the packet (assume we have a XMPPConnection instance called “con”).<br> con.sendPacket(presence);</p>
-</li>
-</ul>
-<p>Smack提供以下两种方法阅读收到的信息包：PacketListener和PacketCollector。它们都使用PacketFilter的实例来决定应该处理哪个信息包。信息包监听器（packet listener）用于事件类型的设计，而信息包收集器（packet collector）有一个信息包的结果队列，你可以对其实施polling和blocking操作。所以，信息包监听器在你收到任何一个信息包，且你想对其进行操作时是有用的，而信息包收集器在你想等待某个特殊的信息包时是有用的。信息包收集器和监听器可以通过XMPPConnection的实例来创建。</p>
-<hr>
-<h1 id="Messaging-Basics"><a href="#Messaging-Basics" class="headerlink" title="Messaging Basics"></a>Messaging Basics</h1><h2 id="Messaging-using-Chat-and-GroupChat"><a href="#Messaging-using-Chat-and-GroupChat" class="headerlink" title="Messaging using Chat and GroupChat"></a>Messaging using Chat and GroupChat</h2><p>互相发送消息是即时通讯的核心，以下是两个在收发消息是用的类：</p>
-<ol>
-<li>org.jivesoftware.smack.Chat – 用于两个人之间发送消息</li>
-<li>org.jivesoftware.smack.GroupChat –用于加入聊天室，很多人之间相互发送消息。</li>
-</ol>
-<p>Chat和GroupChat类都用org.jivesoftware.smack.packet .Message信息包类发送消息。在某些情况下，也许你希望绕过更高级别的Chat和GroupChat类直接发送和接受消息。<br>聊天（Chat）<br>聊天时在两个用户间创建了一个新的线程（使用一个线程ID）。以下程序片示例了如何如何与一个用户进行开始聊天并发送一段文本消息：</p>
-<pre><code>// Assume we&apos;ve created an XMPPConnection name &quot;connection&quot;.
-Chat newChat = connection.createChat(&quot;jsmith@jivesoftware.com&quot;);
-newChat.sendMessage(&quot;Howdy!&quot;);
-</code></pre><p>Chat.sendMessage(String)方法可以很方便的创建一个消息对象，方法体使用字符串类型的参数，然后发送消息。如果想在发送消息前对消息设置额外的只，可以使用Chat.createMessage() and Chat.sendMessage(Message)方法，如下例所示：</p>
-<pre><code>// Assume we&apos;ve created an XMPPConnection name &quot;connection&quot;.
-Chat newChat = connection.createChat(&quot;jsmith@jivesoftware.com&quot;);
-Message newMessage = newChat.createMessage();
-newMessage.setBody(&quot;Howdy!&quot;);
-message.setProperty(&quot;favoriteColor&quot;, &quot;red&quot;);
-newChat.sendMessage(newMessage);
-</code></pre><p>使用Chat对象可以轻松的收听其它聊天者的回复。以下程序片是parrot-bot，它映射会其它用户类型的所有事情：</p>
-<pre><code>// Assume we&apos;ve created an XMPPConnection name &quot;connection&quot;.
-Chat newChat = connection.createChat(&quot;jsmith@jivesoftware.com&quot;);
-newMessage.setBody(&quot;Hi, I&apos;m an annoying parrot-bot! Type something back to me.&quot;);
-while (true) {
-// Wait for the next message the user types to us.
-Message message = newChat.nextMessage();
-// Send back the same text the other user sent us.
-newChat.sendMessage(message.getBody());
-}
-</code></pre><p>以上代码使用Chat.nextMessage()方法获得下一条消息，它必需一直等待直到收到下一条消息。也有其它的方法可以等待特定的时间来接受下一条消息，或者你也可以增加一个监听器，它可以在每次收到消息时通知你。</p>
-<p><strong>群聊（GroupChat）</strong></p>
-<p>群聊在通过一个服务器连接到聊天室，你可以向一组人发送消息或接收他们的消息。在你能接收和发送消息前，你必须使用一个昵称登陆到聊天室。以下程序段可以连接到一个聊天室并发送消息：</p>
-<pre><code>// Assume we&apos;ve created an XMPPConnection name &quot;connection&quot;.
-GroupChat newGroupChat = connection.createGroupChat(&quot;test@jivesoftware.com&quot;);
-// Join the group chat using the nickname &quot;jsmith&quot;.
-newGroupChat.join(&quot;jsmith&quot;);
-// Send a message to all the other people in the chat room.
-newGroupChat.sendMessage(&quot;Howdy!&quot;);
-</code></pre><p>群聊时收发消息和私聊时工作原理大体一致。同样，也有方法可以获得聊天室里其它用户的列表。</p>
-<hr>
-<h2 id="Roster-and-Presence"><a href="#Roster-and-Presence" class="headerlink" title="Roster and  Presence"></a>Roster and  Presence</h2><p>花名册让你很清楚的知道其它可用的用户。用户可以被分成像“朋友”、“合作者”这样的组。其它的即使通讯系统将花名册作为好友列表、联系列表等。</p>
-<pre><code>**当你成功登陆服务器后，可以使用XMPPConnection.getRoster()获得Roster类的实例。**
-</code></pre><p><strong>花名册条目（Roster Entries）</strong></p>
-<p>花名册里的每一个用户都以一条花名册条目的形式呈现，包括以下几部分：</p>
-<ol>
-<li>一个XMPP地址(例如：<a href="mailto:jsmith@example.com" target="_blank" rel="noopener">jsmith@example.com</a>).</li>
-<li><p>分配给你的用户名 (例如： “Joe”).<br>该条目在花名册中所属组的列表。如果该条目不属于任何一个组，将被称为“尚未分类的条目。<br>以下程序段可以打印出花名册中的所有条目：</p>
-<p> Roster roster = con.getRoster();<br> for (Iterator i=roster.getEntries(); i.hasNext(); ) {<br> System.out.println(i.next());<br> }</p>
-</li>
-</ol>
-<p>也有获得个人条目、尚未分类条目的列表、一个或者所有组的方法。</p>
-<p><strong>呈现（Presence）</strong></p>
-<p>花名册中的每一个条目都有相关的呈现方式。Roster.getPresence(String user)方法将通过用户的状态或当用户不在线或不同意将其在线状态显示出来时使用空对象（null）返回一个Presence对象。</p>
-<p>注意：一般情况下，用户是否同意显示其状态依赖于用户所在的花名册，但这不是在所有情况下都成立的。</p>
-<p>用户也有一个在线或离线的状态，如果用户在线，他们的显示信息中将会有一些扩展的信息，例如他当前正在做什么，是否希望被打扰等等，详细内容可以参看Presence类。</p>
-<p><strong>Listening for Roster and Presence Changes</strong></p>
-<p>Roster类的典型用途是用树状形式显示组和每一个条目以及它的当前状态。如下图所示是 Exodus XMPP客户端的花名册。</p>
-<p>显示的信息很可能会经常改变，也有可能是花名册的条目被改变甚至被删除。为了监视花名册的改变和显示的信息，应该使用一个花名册监听器（RosterListener）。以下代码使用Roster（它可以打印出花名册中的任何变化）注册了一个RosterListener。标准的客户端应该使用相似的代码更新花名册的用户信息（roster UI）以正确显示变化的信息。</p>
-<pre><code>final Roster roster = con.getRoster();
-roster.addRosterListener(new RosterListener() {
-public void rosterModified() {
-// Ignore event for this example.
-}
-
-public void presenceChanged(String user) {
-// If the presence is unavailable then &quot;null&quot; will be printed,
-// which is fine for this example.
-System.out.println(&quot;Presence changed: &quot; + roster.getPresence(user));
-}
-});
-</code></pre><p><strong>向花名册中添加条目（Adding Entries to the Roster）</strong></p>
-<p>花名册和显示使用基于许可的模型，这要求用户在加入别人的花名册前必须得到允许。这样，确保只有被允许的人才可以看到自己所显示的信息，从而保护了用户的隐私。因此，在你想添加一个新的条目，且对方没有接受你的请求前，该条目将处于等待状态。</p>
-<p>如果另一个用户请求同意显示，从而你他们可以将你加入他们的花名册，你必须接受或拒绝请求。Smack通过以下三种方式之一操作同意显示请求：</p>
-<ol>
-<li>自动接受所有的同意显示请求。</li>
-<li>自动拒绝所有的同意显示请求。</li>
-<li>手动处理同意显示请求。</li>
-</ol>
-<p>可以使用Roster.setSubscriptionMode(int subscriptionMode)方法设置模式。简单的客户通常使用一个自动接受或拒绝同意显示请求的模式，而用更多特征的用户应该使用手动处理同意显示请求的模式，并让终端用户接受或拒绝每一个请求。如果使用手动模式，应该声明一个信息包监听器（PacketListener）来监听有Presence.Type.SUBSCRIBE类型的显示信息包。</p>
-<p><strong>处理收到的信息包(Processing Incoming Packets)</strong><br>Smack提供一个使用以下两个结构的灵活框架来处理收到的信息包：</p>
-<p>org.jivesoftware.smack.PacketCollector – 一个允许你同步的等待新的信息包的类</p>
-<p>org.jivesoftware.smack.PacketListener – 一个异步的通知你收到信息包的接口</p>
-<p>信息包监听器（packet listener）用于事件类型的设计，而信息包收集器（packet collector）有一个信息包的结果队列，你可以对其实施polling和blocking操作。所以，信息包监听器在你收到任何一个信息包，且你想对其进行操作时是有用的，而信息包收集器在你想等待某个特殊的信息包时是有用的。信息包收集器和监听器可以通过<br>XMPPConnection的实例来创建。</p>
-<p>由org.jivesoftware.smack.filter.PacketFilter接口来决定哪个特殊的信息包将被转交给信息包收集器（PacketCollector）或信息包监听器（PacketListener）。可以在org.jivesoftware.smack.filter包中找到许多预先定义的过滤器。<br>以下代码阐释了如何注册一个信息包收集器（packet collector）和信息包监听器（packet listener）：</p>
-<pre><code>// Create a packet filter to listen for new messages from a particular
-// user. We use an AndFilter to combine two other filters.
-PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class),
-new FromContainsFilter(&quot;mary@jivesoftware.com&quot;));
-// Assume we&apos;ve created an XMPPConnection name &quot;connection&quot;.
-
-// First, register a packet collector using the filter we created.
-PacketCollector myCollector = connection.createPacketCollector(filter);
-// Normally, you&apos;d do something with the collector, like wait for new packets.
-
-// Next, create a packet listener. We use an anonymous inner class for brevity.
-PacketListener myListener = new PacketListener() {
-public void processPacket(Packet packet) {
-// Do something with the incoming packet here.
-}
-};
-// Register the listener.
-connection.addPacketListener(myListener, filter);
-</code></pre><p><strong>标准信息包过滤器（Standard Packet Filters）</strong></p>
-<p>Smack包含一套丰富的信息包过滤器，你也可以通过信息包过滤器接口（PacketFilter interface）编写程序来创建自己的过滤器。缺省的过滤器集包括：</p>
-<ul>
-<li>PacketTypeFilter – 某个特殊的类类型的信息包过滤器</li>
-<li>PacketIDFilter – 拥有特殊的信息包ID（packet ID）的过滤器</li>
-<li>ThreadFilter – 拥有特殊线程ID（thread ID）的信息包的过滤器</li>
-<li>ToContainsFilter –发送到某个特殊地址的信息包的过滤器</li>
-<li>FromContainsFilter –发送到某个特殊地址的信息包的过滤器  </li>
-<li>PacketExtensionFilter – 拥有特殊的信息包扩展的信息包的过滤器</li>
-<li>AndFilter –对两个过滤器实施逻辑与操作的过滤器</li>
-<li>OrFilter –对两个过滤器实施逻辑或操作的过滤器</li>
-<li>NotFilter –对一个过滤器实施逻辑非操作的过滤器</li>
-</ul>
-<p>Provider Architecture: Packet Extensions and Custom IQ’s<br>Smack提供的体系是堵塞自定义的XML信息包扩展和IQ包分析器的系统（The Smack provider architecture is a system for plugging in custom XML parsing of packet extensions and IQ packets）。标准的Smack扩展（Smack Extensions）是使用提供者的体系结构搭建的。存在以下两种类型的提供者：</p>
-<ul>
-<li><p>IQProvider –将IQ请求（ IQ requests）解析成Java对象（Java objects）</p>
-</li>
-<li><p>PacketExtension – 将附属在信息包上的XML子文档解析成信息包扩展实例（PacketExtension instances）</p>
-</li>
-</ul>
-<p><strong>IQProvider</strong></p>
-<p>默认情况下，Smack致知道如何处理只有类似以下几个名字空间的子信息包的IQ信息包（IQ packets）：</p>
-<ul>
-<li>jabber:iq:auth</li>
-<li>jabber:iq:roster</li>
-<li>jabber:iq:register</li>
-</ul>
-<p>因为许多IQ类型是XMPP及其扩展部分的一部分，所以提供一个可插入的IQ分析机制。IQ Providers被程序自动的注册或通过创建在你的JAR 文件的META-INF目录下创建一个mack.providers文件。该文件是一个包含一个或多个iqProvider条目（iqProvider entries）的XML文档，如下例所示：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;smackProviders&gt;
- &lt;iqProvider&gt;
- &lt;elementName&gt;query&lt;/elementName&gt;
- &lt;namespace&gt;jabber:iq:time&lt;/namespace&gt;
- &lt;className&gt;org.jivesoftware.smack.packet.Time&lt;/className&gt;
- &lt;/iqProvider&gt;
-&lt;/smackProviders&gt;
-</code></pre><p>每一个IQ provider都和一个元素名（element name）和名字空间（ namespace）相联系。在上面的例子中，元素名是query，名字空间是abber:iq:time。如果有多重提供者条目（multiple provider entries）尝试注册并控制相同的名字空间，那么从类路径（classpath）载入的第一个条目将有优先权。</p>
-<p>IQ provider类可以实现IQProvide接口，或者继承IQ类。在前面的例子中，每一个IQProvider负责解析原始的XML流从而创建一个IQ实例。在下面的例子中，bean introspection将被用于尝试自动使用在IQ packet XML中发现的值设置IQ实例的属性。一个XMPP时间信息包如下所示：<br>    <iq type="result" to="joe@example.com" from="mary@example.com" id="time_1"><br>    <query xmlns="jabber:iq:time"><br>    <utc>20020910T17:58:35</utc><br>    <tz>MDT</tz><br>    <display>Tue Sep 10 12:58:35 2002</display><br>    </query><br>    </iq></p>
-<p>为了让这个信息包自动的映射成上面的providers file中所列的时间对象（Time object），它必须有以下几个方法：setUtc(String), setTz(String), 和 setDisplay(String)。自动检查（introspection）的服务将试着自动的将字符串值转化成a boolean, int, long, float, double,或 Class 类型。转化成何种类型由IQ实例的需要来决定。</p>
-<p><strong>PacketExtensionProvider</strong></p>
-<p>信息包插件提供者（Packet extension providers）为信息包提供一个可插入的系统，这些信息包是一个IQ, message和presence packets的自定义名字空间的子元素。每一个插件提供者（extension provider）使用一个元素名（element name）和名字空间（namespace）在smack.providers文件中注册，如下例所示：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;smackProviders&gt;
-&lt;extensionProvider&gt;
-&lt;elementName&gt;x&lt;/elementName&gt;
-&lt;namespace&gt;jabber:iq:event&lt;/namespace&gt;
-&lt;className&gt;org.jivesoftware.smack.packet.MessageEvent&lt;/className&gt;
-&lt;/extensionProvider&gt;
-&lt;/smackProviders&gt;
-</code></pre><p>如果有多重提供者条目（multiple provider entries）尝试注册并控制相同的名字空间，那么从类路径（classpath）载入的第一个条目将有优先权。</p>
-<p>一旦在一个信息包中发现信息包插件，解析器将传递到正确的提供者。每一个提供者可以实现PacketExtensionProvider接口或者是一个标准的Java Bean。在前面的例子中，每一个插件提供者（extension provider）负责解析原始的XML流去构造一个实例。在下面的例子中，bean introspection将被用于尝试自动使用在信息包插件子元素（packet extension sub-element）中的值设置类的属性。</p>
-<p>当一个插件提供者（extension provider）没有用元素名（element name）和名字空间（namespace）对注册是，Smack将存储所有在缺省信息包插件（DefaultPacketExtension）对象中的最高级别元素（top-level elements），并匹配到信息包上。</p>
-<p><strong>信息包属性（Packet Properties）</strong></p>
-<p>Smack提供简单的机制来将任意的属性附加到信息包上。每一个属性有个字符串类型的名字和一个值，这个值或者是Java原始数据类型（int, long, float, double, boolean）的，或者是任何可序列化的对象（Serializable object）（当一个java对象实现了Serializable接口时，它就是可序列化的）。</p>
-<p><strong>使用API（Using the API）</strong></p>
-<p>所有主要对象都有属性支持，例如消息对象（Message objects）。以下代码阐释了如何设置属性：</p>
-<pre><code>Message message = chat.createMessage();
-// Add a Color object as a property.
-message.setProperty(&quot;favoriteColor&quot;, new Color(0, 0, 255));
-// Add an int as a property.
-message.setProperty(&quot;favoriteNumber&quot;, 4);
-chat.sendMessage(message);
-</code></pre><p>获得这些相同的属性要用到以下的代码：</p>
-<pre><code>Message message = chat.nextMessage();
-// Get a Color object property.
-Color favoriteColor = (Color)message.getProperty(&quot;favoriteColor&quot;);
-// Get an int property. Note that properties are always returned as
-// Objects, so we must cast the value to an Integer, then convert
-// it to an int.
-int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).intValue();
-</code></pre><p><strong>将对象作为属性（Objects as Properties）</strong></p>
-<p>将对象作为属性值是改变数据的一个非常有力和简单的方法。但是，你应该记住以下几点：</p>
-<ul>
-<li>信息包插件（Packet extensions）是向XMPP增加额外数据的更权威的方式。使用属性在某种情况下也许会比较方便，但是，Smack将会控制XML。</li>
-<li>当你将Java对象（Java object）作为属性发送时，只有在客户机运行的Java能够解释数据。所以，可以考虑使用一系列的原始值来传递数据。</li>
-<li>作为属性值发送的对象必须实现序列化接口（Serialiable）。</li>
-<li>除此之外，发送者和接受者都必须由相同版本的类，否则在反序列化（de-serializing the object）对象时将发生序列化异常。</li>
-<li>序列化的对象将会非常大，将会占用很多的服务器资源和带宽。</li>
-</ul>
-<p><strong>XML格式（XML Format）</strong></p>
-<p>当前的用于发送属性的XML格式不是标准的，所以可能不会得到使用Smack的客户的认可。XML如下所示（为了更清晰添加了注释）：</p>
-<pre><code>&lt;!-- All properties are in a x block. --&gt;
-&lt;properties xmlns=&quot;http://www.jivesoftware.com/xmlns/xmpp/properties&quot;&gt;
-&lt;!-- First, a property named &quot;prop1&quot; that&apos;s an integer. --&gt;
-&lt;property&gt;
-&lt;name&gt;prop1&lt;/name&gt;
-&lt;value type=&quot;integer&quot;&gt;123&lt;/value&gt;
-&lt;property&gt;
-&lt;!-- Next, a Java object that&apos;s been serialized and then converted
- from binary data to base-64 encoded text. --&gt; 
-&lt;property&gt;
-&lt;name&gt;blah2&lt;/name&gt;
-&lt;value type=&quot;java-object&quot;&gt;adf612fna9nab&lt;/value&gt;
-&lt;property&gt;
-&lt;/properties&gt;
-</code></pre><p>当前支持的数据类型有：integer, long, float, double, boolean, string, 和java-object。</p>
-<p><strong>使用Smack调试（Debugging with Smack）</strong></p>
-<p>Smack包含两个内置的调试控制台，他们允许你在服务器和客户机建跟踪XML的踪迹。简单的调试器（lite debugger）是smack.jar的一部分，加强的调试器（enhanced debugger）包含在（smackx-debug.jar）中。</p>
-<p>可以用两种不同的方法激活调试模式：</p>
-<p>1．在创建连接前加入以下一行代码：</p>
-<pre><code>XMPPConnection.DEBUG_ENABLED = true;
-</code></pre><p>2．将Java的系统属性smack.debugEnabled设置为true。这一系统属性可通过下一命令行设置：</p>
-<pre><code>java -Dsmack.debugEnabled=true SomeApp
-</code></pre><p>在你的应用程序中，如果你想明确的禁用调试模式，包括使用命令行参数，则在打开新的连接前在你的应用程序中添加以下一行代码：</p>
-<pre><code>XMPPConnection.DEBUG_ENABLED = false;
-</code></pre><p>Smack使用一下的逻辑来决定使用哪个调制控制台：</p>
-<ol>
-<li><p>它将首先尝试使用Java系统属性smack.debuggerClass 所指定的调试类（debugger class）。如果你需要开发自己的调试器 I，可以实现SmackDebugger 接口然后使用下面的命令行设置系统属性：</p>
-<p>java -Dsmack.debuggerClass=my.company.com.MyDebugger SomeApp</p>
-</li>
-<li><p>如果第一步失败了，Smack就会尝试使用增强的调试器（enhanced debugger）。 文件 smackx-debug.jar 包含，因此你要把jar文件放到类路径（classpath）下。如果空间确定你只是想要配置smack.jar文件，这种情况下增强的调试器（enhanced debugger）将不可用。</p>
-</li>
-<li><p>最后一种是前面两种都失败后使用简单的调试器（ite debugger）。在你的内存很小的时候，简单的调试器（ite debugger）是一个很好的选择。</p>
-</li>
-</ol>
-<p><strong>增强的调试器（enhanced debugger）</strong></p>
-<p>当调试模式可用时，将出现一个包含每一个创建的连接的标签调试窗口，该窗口包含以下信息：</p>
-<ul>
-<li>连接标签（Connection tabs） -每一个标签显示连接相关的调试信息</li>
-<li>Smack信息标签（Smack info tab） -显示关于Smack的信息 (例如： Smack的版本（Smack version）, 安装的组件（installed components）,等等)。</li>
-<li>连接标签包含以下信息:</li>
-<li>所有的信息包（All Packets） -显示由Smack解析的发送和收到的信息包的信息。</li>
-<li>未经处理的发送信息包（Raw Sent Packets） -未经处理的XML traffic（raw XML traffic）由Smack生成并发送至服务器 。</li>
-<li>未经处理的接收信息包（Raw Received Packets） –未经处理的XML traffic（raw XML traffic）由服务器发送给客户机。</li>
-<li>Ad-hoc 消息（Ad-hoc message） -允许发送各种类型的ad-hoc信息包（ad-hoc packets）。</li>
-</ul>
-<p><strong>信息—显示连接状态和统计信息。</strong></p>
-<p>简单的调试器（Lite Debugger ）<br>当调试模式可用时，每创建一个连接将出现调试窗口，该窗口包含以下信息：</p>
-<p>客户端的流量（Client Traffic） (红色的文本) –未经处理的XML traffic（raw XML traffic）由Smack生成并发送至服务器 。</p>
-<p>服务器端的流量（Server Traffic）(蓝色的文本) –未经处理的XML traffic（raw XML traffic）由服务器发送给客户机。</p>
-<p>解释的信息包（Interpreted Packets）(绿色的文本) – 显示来自服务器的由Smack解析的XML信息包（XML packets）</p>
+        <p>做过Web开发应该对FilterChain这个词不陌生，在Servlet应用中我们可以使用Filter来拦截拦截客户端请求，在响应返回给客户端之前截获请求，我们可以使用EncodingFilter来设置请求的编码，使用SecurityFilter来做权限控制，所有的Filter组成了一个完整的FilterChain. NIO框架Netty也是用了FilterChain的设计模式，可以配置Filter来完成请求的编解码，解决TCP的粘包和拆包问题等等…<br><a id="more"></a><br>这篇文章就介绍一下如何利用FilterChain模式来监控SQL的调用性能.</p>
+<h1 id="Filter定义"><a href="#Filter定义" class="headerlink" title="Filter定义"></a>Filter定义</h1><p>首先定义一个JdbcFilter,用于监听SQL相关操作,接口定义如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">JdbcFilter</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">initDataSource</span><span class="params">(DataSource source, JdbcFilter chain)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">closeConnection</span><span class="params">(Connection source, JdbcFilter chain)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">    </span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">executeSingleStatement</span><span class="params">(SingleStatement source, SingleConnection conn, String sql, <span class="keyword">boolean</span> autoCommit, Object params, JdbcFilter chain)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultJdbcFilterChain</span> <span class="keyword">implements</span> <span class="title">JdbcFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> List&lt;JdbcFilter&gt; filters;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultJdbcFilterChain</span><span class="params">(List&lt;JdbcFilter&gt; filters)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.filters = filters;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="DataSource定义"><a href="#DataSource定义" class="headerlink" title="DataSource定义"></a>DataSource定义</h1><p>我们在自定义的DataSource类里添加一个Filter列表，Filter可以从配置中获取,DataSource初始化时初始化一个FilterChain,依次调用每个Filter的<code>initSingleDataSource()</code>方法，最后调用真正的初始化方法<code>initDataSourceOrigin</code>,如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleDataSource</span> <span class="keyword">extends</span> <span class="title">AbstractDataSource</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">volatile</span> List&lt;JdbcFilter&gt; filters;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.filters = loadFilters()</span><br><span class="line">            initDataSourceWithFilters(<span class="keyword">this</span>.config);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> DataSource <span class="title">initDataSourceWithFilters</span><span class="params">(<span class="keyword">final</span> DataSourceConfig value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (filters != <span class="keyword">null</span> &amp;&amp; filters.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            JdbcFilter chain = <span class="keyword">new</span> DefaultJdbcFilterChain(filters) &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> DataSource <span class="title">initSingleDataSource</span><span class="params">(SingleDataSource source, JdbcFilter chain)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (index &lt; filters.size()) &#123;</span><br><span class="line">                    <span class="comment">//依次调用每个Filter的方法</span></span><br><span class="line">                        <span class="keyword">return</span> filters.get(index++).initSingleDataSource(source, chain);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> source.initDataSourceOrigin(value);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> chain.initSingleDataSource(<span class="keyword">this</span>, chain);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> initDataSourceOrigin(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Connection定义"><a href="#Connection定义" class="headerlink" title="Connection定义"></a>Connection定义</h1><p>如果我们要监听Connection的关闭事件，那就创建一个自定义的SingleConnection类，里面包含Filter列表，重写close()方法，在里面初始化FilterChain,依次调用Filter的<code>closeSingleConnection()</code>方法，最后再调用原始的close()方法,如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleConnection</span> <span class="keyword">implements</span> <span class="title">Connection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Connection conn;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SingleDataSource dataSource;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;JdbcFilter&gt; filters;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">closeOrigin</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (filters != <span class="keyword">null</span> &amp;&amp; filters.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            JdbcFilter chain = <span class="keyword">new</span> DefaultJdbcFilterChain(filters) &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeSingleConnection</span><span class="params">(SingleConnection source, JdbcFilter chain)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (index &lt; filters.size()) &#123;</span><br><span class="line">                    <span class="comment">//依次调用每个Filter的方法</span></span><br><span class="line">                        filters.get(index++).closeSingleConnection(source, chain);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        source.closeOrigin();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            chain.closeSingleConnection(<span class="keyword">this</span>, chain);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            closeOrigin();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Statement <span class="title">createStatement</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        Statement stmt = conn.createStatement();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SingleStatement(<span class="keyword">this</span>.dsId, <span class="keyword">this</span>, stmt, <span class="keyword">this</span>.filters);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Statement定义"><a href="#Statement定义" class="headerlink" title="Statement定义"></a>Statement定义</h1><p>类似的，如果要监听Statement的执行事件，那就可以新建一个SingleStatement类，对原生的Statement做一层封装，在相应的SQL执行方法里调用FilterChain的方法，SingleConnection在初始化Statement时返回一个SingleStatement实例，并把filters引用传递给SingleStatement.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleStatement</span> <span class="keyword">implements</span> <span class="title">Statement</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> SingleConnection singleConnection;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> List&lt;JdbcFilter&gt; filters;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> Statement innerStatement;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultSet <span class="title">executeQuery</span><span class="params">(<span class="keyword">final</span> String sql)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String processedSql = processSQL(sql, <span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> executeWithFilter(<span class="keyword">new</span> JdbcOperationCallback&lt;ResultSet&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> ResultSet <span class="title">doAction</span><span class="params">(Connection conn)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">                ResultSet rs = innerStatement.executeQuery(processedSql);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> SingleResultSet(rs, filters);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, processedSql, <span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">protected</span> &lt;T&gt; <span class="function">T <span class="title">executeWithFilter</span><span class="params">(<span class="keyword">final</span> JdbcOperationCallback&lt;T&gt; callback, <span class="keyword">final</span> String sql, Object params)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (filters != <span class="keyword">null</span> &amp;&amp; filters.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            JdbcFilter chain = <span class="keyword">new</span> DefaultJdbcFilterChain(filters) &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">executeSingleStatement</span><span class="params">(SingleStatement source, SingleConnection conn, String sql, <span class="keyword">boolean</span> autoCommit, Object params, JdbcFilter chain)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (index &lt; filters.size()) &#123;</span><br><span class="line">                    <span class="comment">//依次调用filter的方法</span></span><br><span class="line">                        <span class="keyword">return</span> filters.get(index++).executeSingleStatement(source, conn, sql, autoCommit, params, chain);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> (T) executeWithFilterOrigin(callback, conn);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> chain.executeSingleStatement(<span class="keyword">this</span>, <span class="keyword">this</span>.singleConnection, sql,   <span class="keyword">this</span>.singleConnection.getAutoCommit(), params, chain);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> executeWithFilterOrigin(callback, <span class="keyword">this</span>.singleConnection);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="获取SQL执行结果"><a href="#获取SQL执行结果" class="headerlink" title="获取SQL执行结果"></a>获取SQL执行结果</h1><p>最后我们在Filter里添加生命周期方法，比如获取Statement的执行结果:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealFilter</span> <span class="keyword">extends</span> <span class="title">DefaultJdbcFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">executeSingleStatement</span><span class="params">(SingleStatement source, SingleConnection conn, String sql, <span class="keyword">boolean</span> autoCommit, Object sqlParams, JdbcFilter chain)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        </span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            result = chain.executeSingleStatement(source, conn, sql, autoCommit, sqlParams, chain);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;         </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前面的例子简单介绍了如何使用FilterChain模式来做SQL的监控，完整的源码可以参考<a href="https://github.com/dianping/zebra" target="_blank" rel="noopener">zebra</a>.</p>
 
       
     </div>
@@ -865,9 +596,9 @@ int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).
   
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"># android</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
-            <a href="/tags/消息推送，-server，-client/" rel="tag"># 消息推送， server， client</a>
+            <a href="/tags/FilterChain/" rel="tag"># FilterChain</a>
           
         </div>
       
@@ -914,16 +645,16 @@ int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="http://www.ezlippi.com/blog/2014/10/how to use smack.html" title="Smack开发手册">Smack开发手册</a>
+          <a href="http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html" title="使用FilterChain模式监控SQL调用">使用FilterChain模式监控SQL调用</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="http://www.ezlippi.com/blog/2014/10/how to use smack.html" title="Smack开发手册">http://www.ezlippi.com/blog/2014/10/how to use smack.html</a>
+          <a href="http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html" title="使用FilterChain模式监控SQL调用">http://www.ezlippi.com/blog/2018/08/filterchain-sql-monitor.html</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2014年10月30日 - 00时10分
+            <strong>发布时间：</strong>2018年8月12日 - 18时08分
         </li>  
 
         <li class="post-copyright-license">
@@ -937,8 +668,8 @@ int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2014/10/xmpp.html" rel="next" title="XMPP协议分析-原理">
-                <i class="fa fa-chevron-left"></i> XMPP协议分析-原理
+              <a href="/blog/2018/08/mysql-tips.html" rel="next" title="MySQL索引优化案例">
+                <i class="fa fa-chevron-left"></i> MySQL索引优化案例
               </a>
             
           </div>
@@ -946,10 +677,6 @@ int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2014/10/androidDP-introduction.html" rel="prev" title="AndroidPN消息推送">
-                AndroidPN消息推送 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1140,7 +867,7 @@ int favoriteNumber = ((Integer)message.getProperty(&quot;favoriteNumber&quot;)).
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Smack的主要优势："><span class="nav-number">1.</span> <span class="nav-text">Smack的主要优势：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于XMPP"><span class="nav-number">2.</span> <span class="nav-text">关于XMPP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用花名册（Working-with-the-Roster）"><span class="nav-number">3.</span> <span class="nav-text">使用花名册（Working with the Roster）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Messaging-Basics"><span class="nav-number"></span> <span class="nav-text">Messaging Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Messaging-using-Chat-and-GroupChat"><span class="nav-number">1.</span> <span class="nav-text">Messaging using Chat and GroupChat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Roster-and-Presence"><span class="nav-number">2.</span> <span class="nav-text">Roster and  Presence</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Filter定义"><span class="nav-number">1.</span> <span class="nav-text">Filter定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DataSource定义"><span class="nav-number">2.</span> <span class="nav-text">DataSource定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Connection定义"><span class="nav-number">3.</span> <span class="nav-text">Connection定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Statement定义"><span class="nav-number">4.</span> <span class="nav-text">Statement定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取SQL执行结果"><span class="nav-number">5.</span> <span class="nav-text">获取SQL执行结果</span></a></li></ol></div>
             
 
           </div>
