@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /img/
+Disallow: /assets/
+
+Sitemap: https://www.yuge.im/sitemap.xml
+Sitemap: https://www.yuge.im/baidusitemap.xml
