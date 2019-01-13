@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="Yeung sum ＢＬＯＧ">
 <meta property="og:description" content="一、简介Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-13T14:28:02.902Z">
+<meta property="og:image" content="//litten.me/assets/blogImages/域名解析配置.png">
+<meta property="og:updated_time" content="2019-01-13T15:58:47.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初始Hexo">
 <meta name="twitter:description" content="一、简介Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
+<meta name="twitter:image" content="//litten.me/assets/blogImages/域名解析配置.png">
   
     <link rel="alternative" href="/atom.xml" title="Yeung sum ＢＬＯＧ" type="application/atom+xml">
   
@@ -221,7 +223,10 @@
 <p>执行命令(建议每次都按照如下步骤部署)：</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo <span class="keyword">generate</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 <p>在浏览器中输入<code>http://yourgithubname.github.io</code>就可以看到你的个人博客啦，是不是很兴奋！</p>
-<h4 id="7-绑定域名"><a href="#7-绑定域名" class="headerlink" title="7.绑定域名"></a>7.绑定域名</h4><h4 id="文档摘要"><a href="#文档摘要" class="headerlink" title="文档摘要"></a>文档摘要</h4><p>其他不错的文档</p>
+<h4 id="7-绑定域名"><a href="#7-绑定域名" class="headerlink" title="7.绑定域名"></a>7.绑定域名</h4><p>进入域名解析进行如下配置:</p>
+<p><img src="/assets/blogImages/域名解析配置.png" alt="域名解析配置"></p>
+<h3 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#创建CNAME文件</span></span><br><span class="line">touch source/CNAME</span><br><span class="line"><span class="meta">#填写域名</span></span><br><span class="line">yboot.cn</span><br></pre></td></tr></table></figure>
+<h4 id="文档摘要"><a href="#文档摘要" class="headerlink" title="文档摘要"></a>文档摘要</h4><p>其他不错的文档</p>
 <ul>
 <li><a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">https://www.cnblogs.com/fengxiongZz/p/7707568.html</a></li>
 <li><a href="http://visugar.com/2017/05/04/20170504SetUpHexoBlog/" target="_blank" rel="noopener">http://visugar.com/2017/05/04/20170504SetUpHexoBlog/</a></li>
