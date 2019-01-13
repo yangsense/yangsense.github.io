@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Yeung sum ＢＬＯＧ">
 <meta property="og:description" content="一、简介Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-13T13:58:17.150Z">
+<meta property="og:updated_time" content="2019-01-13T14:28:02.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初始Hexo">
 <meta name="twitter:description" content="一、简介Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。">
@@ -177,7 +177,61 @@
       
         <h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 <a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 <a id="more"></a>
-<h2 id="二、搭建环境"><a href="#二、搭建环境" class="headerlink" title="二、搭建环境"></a>二、搭建环境</h2>
+<h2 id="二、搭建环境"><a href="#二、搭建环境" class="headerlink" title="二、搭建环境"></a>二、搭建环境</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ol>
+<li>安装Git Bash</li>
+<li>安装NodeJs</li>
+<li>安装hexo</li>
+<li>生成SSH并添加到github</li>
+<li>部署项目</li>
+<li>上传到github</li>
+<li>绑定个人域名</li>
+<li>修改及配置主题</li>
+<li>添加RSS</li>
+<li>添加评论</li>
+<li>写文章部分</li>
+</ol>
+<h3 id="开始耍"><a href="#开始耍" class="headerlink" title="开始耍"></a>开始耍</h3><h4 id="1-安装Git-Bash"><a href="#1-安装Git-Bash" class="headerlink" title="1. 安装Git Bash"></a>1. <strong>安装Git Bash</strong></h4><p>[下载地址][<a href="https://git-for-windows.github.io/]" target="_blank" rel="noopener">https://git-for-windows.github.io/]</a></p>
+<h4 id="2-安装NodeJs"><a href="#2-安装NodeJs" class="headerlink" title="2. 安装NodeJs"></a>2. <strong>安装NodeJs</strong></h4><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">下载地址</a></p>
+<h4 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3. 安装hexo"></a>3. <strong>安装hexo</strong></h4><p>先创建一个文件夹（用来存放所有blog的东西），然后<code>cd</code>到该文件夹下。</p>
+<p>安装hexo命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="selector-tag">i</span> -g hexo</span><br></pre></td></tr></table></figure>
+<p>模块详情：</p>
+<ul>
+<li>node_modules：是依赖包</li>
+<li>public：存放的是生成的页面</li>
+<li>scaffolds：命令生成文章等的模板</li>
+<li>source：用命令创建的各种文章</li>
+<li>themes：主题</li>
+<li>_config.yml： 整个博客的配置</li>
+<li>db.json：source解析所得到的</li>
+<li>package.json：项目所需模块项目的配置信息</li>
+</ul>
+<h4 id="4-生成SSH并添加到github"><a href="#4-生成SSH并添加到github" class="headerlink" title="4. 生成SSH并添加到github"></a>4. <strong>生成SSH并添加到github</strong></h4><p>创建一个repo，名称为<code>yourname.github.io</code>, 其中yourname是你的github名称，按照这个规则创建才有用哦!(具体原因自行百度)</p>
+<p>创建SSH</p>
+<p>在gitbash中输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成ssh。然后按下图的方式找到<code>id_rsa.pub</code>文件的内容</p>
+<p>将文件内容放到github中</p>
+<p>验证: <code>ssh -T git@github.com</code></p>
+<h4 id="5-部署项目"><a href="#5-部署项目" class="headerlink" title="5. 部署项目"></a>5. <strong>部署项目</strong></h4><p>用编辑器打开你的blog项目，修改<code>_config.yml</code>文件的一些配置(冒号之后都是有一个半角空格的)：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/YourgithubName/YourgithubName.github.io.git</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+<p>回到gitbash中，进入你的blog目录，分别执行以下命令：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo <span class="keyword">generate</span></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>注：hexo 3.0把服务器独立成个别模块，需要单独安装：<code>npm i hexo-server</code>。</p>
+<p>打开浏览器输入：<code>http://localhost:4000</code></p>
+<h4 id="6-上传到github"><a href="#6-上传到github" class="headerlink" title="6. 上传到github"></a>6. <strong>上传到github</strong></h4><p>先安装一波：<code>npm install hexo-deployer-git --save</code>（这样才能将你写好的文章部署到github服务器上并让别人浏览到）</p>
+<p>执行命令(建议每次都按照如下步骤部署)：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo <span class="keyword">generate</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>在浏览器中输入<code>http://yourgithubname.github.io</code>就可以看到你的个人博客啦，是不是很兴奋！</p>
+<h4 id="7-绑定域名"><a href="#7-绑定域名" class="headerlink" title="7.绑定域名"></a>7.绑定域名</h4><h4 id="文档摘要"><a href="#文档摘要" class="headerlink" title="文档摘要"></a>文档摘要</h4><p>其他不错的文档</p>
+<ul>
+<li><a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">https://www.cnblogs.com/fengxiongZz/p/7707568.html</a></li>
+<li><a href="http://visugar.com/2017/05/04/20170504SetUpHexoBlog/" target="_blank" rel="noopener">http://visugar.com/2017/05/04/20170504SetUpHexoBlog/</a></li>
+</ul>
+<p>主题</p>
+<ul>
+<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia</a></li>
+<li><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></li>
+</ul>
+
       
 
       
